@@ -33,6 +33,20 @@ public class Solution {
         }
     }
 
+    private int finalValueOnUpdatedBoard(int temporaryValueDuringUpdate) {
+        if (temporaryValueDuringUpdate == WAITING_VALUE_DURING_INPLACE_UPDATE) {
+            return WAITING;
+        }
+        return temporaryValueDuringUpdate == LIVE_VALUE_DURING_INPLACE_UPDATE ? LIVE : temporaryValueDuringUpdate;
+    }
+
+    private int temporaryValueDuringUpdateOfBoard(int count, int previousValue) {
+        if (previousValue == LIVE && (count < 2 || count > 3)) {
+            return WAITING_VALUE_DURING_INPLACE_UPDATE;
+        }
+        return count == 3 && previousValue == WAITING ? LIVE_VALUE_DURING_INPLACE_UPDATE : previousValue;
+    }
+
     private int countNeighbours(int[][] board, int r, int c) {
         int count = 0;
         for (int[] move : moves) {
@@ -43,20 +57,6 @@ public class Solution {
             }
         }
         return count;
-    }
-
-    private int temporaryValueDuringUpdateOfBoard(int count, int previousValue) {
-        if (previousValue == LIVE && (count < 2 || count > 3)) {
-            return WAITING_VALUE_DURING_INPLACE_UPDATE;
-        }
-        return count == 3 && previousValue == WAITING ? LIVE_VALUE_DURING_INPLACE_UPDATE : previousValue;
-    }
-
-    private int finalValueOnUpdatedBoard(int temporaryValueDuringUpdate) {
-        if (temporaryValueDuringUpdate == WAITING_VALUE_DURING_INPLACE_UPDATE) {
-            return WAITING;
-        }
-        return temporaryValueDuringUpdate == LIVE_VALUE_DURING_INPLACE_UPDATE ? LIVE : temporaryValueDuringUpdate;
     }
 
     private boolean isInBoard(int r, int c) {
