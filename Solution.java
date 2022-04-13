@@ -7,7 +7,7 @@ public class Solution {
     private static final int LIVE_VALUE_DURING_INPLACE_UPDATE = 2;
     private static final int[][] moves = {
         {-1, 0}, {1, 0}, {0, -1}, {0, 1},
-        {-1, -1}, {1, 1,}, {1, -1}, {-1, 1}
+        {-1, -1}, {1, 1}, {1, -1}, {-1, 1}
     };
     private int rows;
     private int columns;
